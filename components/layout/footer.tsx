@@ -73,7 +73,7 @@ export function Footer() {
             reserved.
           </p>
           <p className="text-xs text-white/30">
-            KVK: [to be added] &middot; Amsterdam, The Netherlands
+            KVK: 34225855 &middot; Den Haag, The Netherlands
           </p>
         </div>
       </div>
