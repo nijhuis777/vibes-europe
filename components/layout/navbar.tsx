@@ -4,16 +4,24 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { VibesLogo } from "@/components/icons/vibes-logo";
 import { cn } from "@/lib/utils";
+import type { Locale, Dictionary } from "@/app/[lang]/dictionaries";
 
-const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/projects", label: "Projects" },
-  { href: "/#contact", label: "Contact" },
-];
+interface NavbarProps {
+  lang: Locale;
+  dict: Dictionary;
+}
 
-export function Navbar() {
+export function Navbar({ lang, dict }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const otherLang = lang === "nl" ? "en" : "nl";
+
+  const navLinks = [
+    { href: `/${lang}`, label: dict.nav.home },
+    { href: `/${lang}/projects`, label: dict.nav.projects },
+    { href: `/${lang}/#contact`, label: dict.nav.contact },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -31,7 +39,7 @@ export function Navbar() {
       )}
     >
       <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="text-white">
+        <Link href={`/${lang}`} className="text-white">
           <VibesLogo size={36} />
         </Link>
 
@@ -47,6 +55,14 @@ export function Navbar() {
               </Link>
             </li>
           ))}
+          <li>
+            <Link
+              href={`/${otherLang}`}
+              className="text-white/50 hover:text-white text-xs font-medium uppercase tracking-wider border border-white/20 rounded-md px-2 py-1 transition-colors"
+            >
+              {otherLang.toUpperCase()}
+            </Link>
+          </li>
         </ul>
 
         {/* Mobile menu button */}
@@ -90,6 +106,15 @@ export function Navbar() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link
+                href={`/${otherLang}`}
+                className="block text-white/50 hover:text-white text-base font-medium py-2"
+                onClick={() => setMobileOpen(false)}
+              >
+                {otherLang === "nl" ? "Nederlands" : "English"}
+              </Link>
+            </li>
           </ul>
         </div>
       )}

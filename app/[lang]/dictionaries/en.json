@@ -1,0 +1,126 @@
+{
+  "metadata": {
+    "title": "Vibes Europe — Initiatives that make life easier",
+    "description": "Vibes Europe develops initiatives with market specialists to make life easier, solve problems, and help communities.",
+    "projectsTitle": "Projects",
+    "projectsDescription": "Explore the initiatives built by Vibes Europe — from harvest trips to mental health platforms."
+  },
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "titleLine1": "Initiatives that",
+    "titleLine2": "make life easier",
+    "subtitle": "We partner with specialists to build meaningful projects — solving real problems, supporting communities, and creating impact across Europe.",
+    "cta": "See our projects",
+    "ctaSecondary": "Get in touch"
+  },
+  "mission": {
+    "title": "What drives us",
+    "subtitle": "Every initiative starts with the same question: how can we make this better?",
+    "pillars": [
+      {
+        "title": "Help communities",
+        "description": "We identify communities that need support and build initiatives that create lasting, positive change."
+      },
+      {
+        "title": "Make life easier",
+        "description": "From complex problems to simple solutions — we find the friction points and eliminate them."
+      },
+      {
+        "title": "Work with specialists",
+        "description": "We partner with experts from the market who bring deep domain knowledge to every initiative we launch."
+      }
+    ]
+  },
+  "approach": {
+    "title": "How we work",
+    "subtitle": "Vibes Europe is where initiative meets expertise. We don't just invest — we actively build alongside the specialists who make each project succeed.",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Identify",
+        "description": "We spot opportunities where communities or industries need a better solution — whether it's a gap in services, an underserved group, or a broken process."
+      },
+      {
+        "number": "02",
+        "title": "Connect",
+        "description": "We bring together the right specialists — people with hands-on experience and deep domain knowledge who share our drive to build something meaningful."
+      },
+      {
+        "number": "03",
+        "title": "Build",
+        "description": "Together we develop the initiative from idea to reality, combining entrepreneurial speed with specialist expertise to create lasting impact."
+      }
+    ]
+  },
+  "projectsSection": {
+    "title": "Our initiatives",
+    "subtitle": "Each project is built with dedicated specialists who bring passion and expertise to their domain.",
+    "viewAll": "View all projects"
+  },
+  "projectsPage": {
+    "title": "Our projects",
+    "subtitle": "Each initiative is a collaboration between Vibes Europe and dedicated specialists who bring deep domain expertise to solve meaningful problems.",
+    "ctaTitle": "Want to build something together?",
+    "ctaSubtitle": "We're always open to new partnerships and ideas that make a real difference.",
+    "ctaButton": "Get in touch"
+  },
+  "projects": {
+    "sweatAndSoil": {
+      "title": "Sweat & Soil",
+      "status": "Active",
+      "shortDescription": "Harvest trips that connect sports communities with Mediterranean farmers — combining nature, exercise, and meaningful work.",
+      "description": "Harvest trips that connect sports communities with Mediterranean farmers. Participants combine physical activity with meaningful agricultural work — picking olives, harvesting grapes, and building connections with local producers.",
+      "highlights": [
+        "Multi-day harvest experiences in the Mediterranean",
+        "Designed for sports teams, clubs, and active communities",
+        "Supporting local farmers and sustainable agriculture"
+      ],
+      "linkLabel": "Visit Sweat & Soil"
+    },
+    "intervisio": {
+      "title": "Intervisio",
+      "status": "In development",
+      "shortDescription": "A platform for multidisciplinary peer consultation (intervisie) — connecting healthcare professionals across disciplines to learn from each other and improve care together.",
+      "description": "A platform for multidisciplinary peer consultation (intervisie) — connecting healthcare professionals across disciplines to learn from each other and improve the quality of care together.",
+      "highlights": [
+        "Multidisciplinary peer consultation matching",
+        "Structured intervisie formats and scheduling",
+        "Building stronger cross-discipline networks in healthcare"
+      ],
+      "linkLabel": "Visit Intervisio"
+    },
+    "comingSoon": {
+      "title": "What's next?",
+      "status": "Exploring",
+      "shortDescription": "We're always exploring new initiatives where we can make a difference. Have an idea or a community that needs support?",
+      "description": "We're always looking for the next meaningful initiative — places where we can partner with specialists to solve real problems and support communities that need it. Our pipeline is active and growing.",
+      "highlights": [
+        "Focused on making life easier for real people",
+        "Always looking for passionate specialist partners",
+        "Open to ideas — reach out if you see an opportunity"
+      ],
+      "linkLabel": "Share your idea"
+    }
+  },
+  "contact": {
+    "title": "Let's talk",
+    "subtitle": "Whether you have an idea for a new initiative, want to collaborate as a specialist, or just want to learn more — we'd love to hear from you.",
+    "cta": "Send us a message",
+    "location": "Den Haag, The Netherlands"
+  },
+  "footer": {
+    "description": "Building initiatives with specialists to make life easier, solve problems, and support communities across Europe.",
+    "navigate": "Navigate",
+    "projects": "Projects",
+    "moreComingSoon": "More coming soon"
+  },
+  "notFound": {
+    "title": "404",
+    "message": "This page doesn't exist — yet.",
+    "cta": "Back to home"
+  }
+}

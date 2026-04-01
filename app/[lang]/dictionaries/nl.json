@@ -1,0 +1,126 @@
+{
+  "metadata": {
+    "title": "Vibes Europe — Initiatieven die het leven makkelijker maken",
+    "description": "Vibes Europe ontwikkelt initiatieven met specialisten uit de markt om het leven makkelijker te maken, problemen op te lossen en gemeenschappen te helpen.",
+    "projectsTitle": "Projecten",
+    "projectsDescription": "Ontdek de initiatieven van Vibes Europe — van oogstreizen tot platforms voor de gezondheidszorg."
+  },
+  "nav": {
+    "home": "Home",
+    "projects": "Projecten",
+    "contact": "Contact"
+  },
+  "hero": {
+    "titleLine1": "Initiatieven die",
+    "titleLine2": "het leven makkelijker maken",
+    "subtitle": "Wij werken samen met specialisten aan betekenisvolle projecten — echte problemen oplossen, gemeenschappen ondersteunen en impact maken door heel Europa.",
+    "cta": "Bekijk onze projecten",
+    "ctaSecondary": "Neem contact op"
+  },
+  "mission": {
+    "title": "Wat ons drijft",
+    "subtitle": "Elk initiatief begint met dezelfde vraag: hoe kunnen we dit beter maken?",
+    "pillars": [
+      {
+        "title": "Gemeenschappen helpen",
+        "description": "We identificeren gemeenschappen die ondersteuning nodig hebben en bouwen initiatieven die blijvende, positieve verandering creëren."
+      },
+      {
+        "title": "Het leven makkelijker maken",
+        "description": "Van complexe problemen naar simpele oplossingen — we vinden de knelpunten en lossen ze op."
+      },
+      {
+        "title": "Werken met specialisten",
+        "description": "We werken samen met experts uit de markt die diepe domeinkennis meebrengen bij elk initiatief dat we lanceren."
+      }
+    ]
+  },
+  "approach": {
+    "title": "Hoe we werken",
+    "subtitle": "Vibes Europe is waar initiatief en expertise samenkomen. We investeren niet alleen — we bouwen actief mee met de specialisten die elk project laten slagen.",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Signaleren",
+        "description": "We spotten kansen waar gemeenschappen of sectoren een betere oplossing nodig hebben — of het nu gaat om een gat in dienstverlening, een onderbelichte groep of een vastgelopen proces."
+      },
+      {
+        "number": "02",
+        "title": "Verbinden",
+        "description": "We brengen de juiste specialisten samen — mensen met praktijkervaring en diepe domeinkennis die onze drive delen om iets betekenisvols te bouwen."
+      },
+      {
+        "number": "03",
+        "title": "Bouwen",
+        "description": "Samen ontwikkelen we het initiatief van idee tot werkelijkheid, waarbij we ondernemerssnelheid combineren met specialistische expertise voor blijvende impact."
+      }
+    ]
+  },
+  "projectsSection": {
+    "title": "Onze initiatieven",
+    "subtitle": "Elk project wordt gebouwd met toegewijde specialisten die passie en expertise meebrengen in hun domein.",
+    "viewAll": "Bekijk alle projecten"
+  },
+  "projectsPage": {
+    "title": "Onze projecten",
+    "subtitle": "Elk initiatief is een samenwerking tussen Vibes Europe en toegewijde specialisten die diepe domeinexpertise inzetten om betekenisvolle problemen op te lossen.",
+    "ctaTitle": "Samen iets bouwen?",
+    "ctaSubtitle": "We staan altijd open voor nieuwe samenwerkingen en ideeën die echt verschil maken.",
+    "ctaButton": "Neem contact op"
+  },
+  "projects": {
+    "sweatAndSoil": {
+      "title": "Sweat & Soil",
+      "status": "Actief",
+      "shortDescription": "Oogstreizen die sportgemeenschappen verbinden met mediterrane boeren — natuur, beweging en zinvol werk combineren.",
+      "description": "Oogstreizen die sportgemeenschappen verbinden met mediterrane boeren. Deelnemers combineren fysieke activiteit met zinvol agrarisch werk — olijven plukken, druiven oogsten en banden opbouwen met lokale producenten.",
+      "highlights": [
+        "Meerdaagse oogstervaringen in het Middellandse Zeegebied",
+        "Ontworpen voor sportteams, clubs en actieve gemeenschappen",
+        "Ondersteuning van lokale boeren en duurzame landbouw"
+      ],
+      "linkLabel": "Bezoek Sweat & Soil"
+    },
+    "intervisio": {
+      "title": "Intervisio",
+      "status": "In ontwikkeling",
+      "shortDescription": "Een platform voor multidisciplinaire intervisie — zorgprofessionals verbinden over disciplines heen om van elkaar te leren en samen de zorg te verbeteren.",
+      "description": "Een platform voor multidisciplinaire intervisie — zorgprofessionals verbinden over disciplines heen om van elkaar te leren en samen de kwaliteit van zorg te verbeteren.",
+      "highlights": [
+        "Multidisciplinaire intervisie-matching",
+        "Gestructureerde intervisievormen en planning",
+        "Sterkere interdisciplinaire netwerken in de zorg opbouwen"
+      ],
+      "linkLabel": "Bezoek Intervisio"
+    },
+    "comingSoon": {
+      "title": "Wat volgt?",
+      "status": "Verkenning",
+      "shortDescription": "We verkennen altijd nieuwe initiatieven waar we verschil kunnen maken. Heb je een idee of een gemeenschap die ondersteuning nodig heeft?",
+      "description": "We zijn altijd op zoek naar het volgende betekenisvolle initiatief — plekken waar we kunnen samenwerken met specialisten om echte problemen op te lossen en gemeenschappen te ondersteunen. Onze pipeline is actief en groeit.",
+      "highlights": [
+        "Gericht op het leven makkelijker maken voor echte mensen",
+        "Altijd op zoek naar gepassioneerde specialist-partners",
+        "Open voor ideeën — neem contact op als je een kans ziet"
+      ],
+      "linkLabel": "Deel je idee"
+    }
+  },
+  "contact": {
+    "title": "Laten we praten",
+    "subtitle": "Of je nu een idee hebt voor een nieuw initiatief, wilt samenwerken als specialist, of gewoon meer wilt weten — we horen graag van je.",
+    "cta": "Stuur ons een bericht",
+    "location": "Den Haag, Nederland"
+  },
+  "footer": {
+    "description": "Initiatieven bouwen met specialisten om het leven makkelijker te maken, problemen op te lossen en gemeenschappen te ondersteunen door heel Europa.",
+    "navigate": "Navigatie",
+    "projects": "Projecten",
+    "moreComingSoon": "Meer binnenkort"
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Deze pagina bestaat (nog) niet.",
+    "cta": "Terug naar home"
+  }
+}

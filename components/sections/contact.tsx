@@ -1,13 +1,18 @@
-export function Contact() {
+import type { Dictionary } from "@/app/[lang]/dictionaries";
+
+interface ContactProps {
+  dict: Dictionary;
+}
+
+export function Contact({ dict }: ContactProps) {
   return (
     <section id="contact" className="py-24 bg-cream">
       <div className="max-w-3xl mx-auto px-6 text-center">
         <h2 className="font-display text-3xl md:text-4xl text-navy-900">
-          Let&apos;s talk
+          {dict.contact.title}
         </h2>
         <p className="mt-4 text-lg text-navy-600 max-w-xl mx-auto leading-relaxed">
-          Whether you have an idea for a new initiative, want to collaborate as
-          a specialist, or just want to learn more — we&apos;d love to hear from you.
+          {dict.contact.subtitle}
         </p>
 
         <div className="mt-10">
@@ -15,7 +20,7 @@ export function Contact() {
             href="mailto:info@vibeseurope.com"
             className="inline-flex items-center justify-center px-8 py-4 bg-navy-900 text-white font-medium rounded-xl hover:bg-navy-800 transition-colors text-base"
           >
-            Send us a message
+            {dict.contact.cta}
           </a>
         </div>
 
@@ -62,7 +67,7 @@ export function Contact() {
                 fill="none"
               />
             </svg>
-            Amsterdam, The Netherlands
+            {dict.contact.location}
           </div>
         </div>
       </div>

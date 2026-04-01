@@ -1,57 +1,59 @@
 import Link from "next/link";
 import { VibesLogoStacked } from "@/components/icons/vibes-logo";
+import type { Locale, Dictionary } from "@/app/[lang]/dictionaries";
 
-export function Footer() {
+interface FooterProps {
+  lang: Locale;
+  dict: Dictionary;
+}
+
+export function Footer({ lang, dict }: FooterProps) {
   return (
     <footer className="bg-navy-950 text-white/70">
       <div className="max-w-6xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {/* Logo and description */}
           <div className="text-white">
             <VibesLogoStacked size={44} />
             <p className="mt-4 text-white/60 text-sm leading-relaxed max-w-xs">
-              Building initiatives with specialists to make life easier, solve
-              problems, and support communities across Europe.
+              {dict.footer.description}
             </p>
           </div>
 
-          {/* Navigation */}
           <div>
             <h4 className="text-white font-medium text-sm uppercase tracking-wider mb-4">
-              Navigate
+              {dict.footer.navigate}
             </h4>
             <ul className="space-y-2">
               <li>
                 <Link
-                  href="/"
+                  href={`/${lang}`}
                   className="text-sm hover:text-white transition-colors"
                 >
-                  Home
+                  {dict.nav.home}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/projects"
+                  href={`/${lang}/projects`}
                   className="text-sm hover:text-white transition-colors"
                 >
-                  Projects
+                  {dict.nav.projects}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/#contact"
+                  href={`/${lang}/#contact`}
                   className="text-sm hover:text-white transition-colors"
                 >
-                  Contact
+                  {dict.nav.contact}
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Projects */}
           <div>
             <h4 className="text-white font-medium text-sm uppercase tracking-wider mb-4">
-              Projects
+              {dict.footer.projects}
             </h4>
             <ul className="space-y-2">
               <li>
@@ -61,7 +63,7 @@ export function Footer() {
                 <a href="https://intervisio.nl" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-white transition-colors">Intervisio</a>
               </li>
               <li>
-                <span className="text-sm opacity-50">More coming soon</span>
+                <span className="text-sm opacity-50">{dict.footer.moreComingSoon}</span>
               </li>
             </ul>
           </div>
