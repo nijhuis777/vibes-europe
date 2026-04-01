@@ -15,22 +15,22 @@ export function VibesLogoMark({ className, size = 40 }: LogoProps) {
       className={className}
     >
       {/* Main V-arm connections */}
-      <path d="M11 8 Q13.5 14 14.5 19" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.55" />
-      <path d="M14.5 19 Q16.5 24 18.5 28" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.55" />
-      <path d="M18.5 28 Q20.5 32 21.5 35" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.55" />
-      <path d="M21.5 35 Q23 38 24 41" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.55" />
-      <path d="M37 8 Q34.5 14 33.5 19" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.55" />
-      <path d="M33.5 19 Q31.5 24 29.5 28" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.55" />
-      <path d="M29.5 28 Q27.5 32 26.5 35" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.55" />
-      <path d="M26.5 35 Q25 38 24 41" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.55" />
+      <path d="M11 8 Q13.5 14 14.5 19" stroke="#FF9E90" strokeWidth="1.6" strokeLinecap="round" opacity="0.7" />
+      <path d="M14.5 19 Q16.5 24 18.5 28" stroke="#FF9E90" strokeWidth="1.6" strokeLinecap="round" opacity="0.7" />
+      <path d="M18.5 28 Q20.5 32 21.5 35" stroke="#FF9E90" strokeWidth="1.6" strokeLinecap="round" opacity="0.7" />
+      <path d="M21.5 35 Q23 38 24 41" stroke="#FF9E90" strokeWidth="1.6" strokeLinecap="round" opacity="0.7" />
+      <path d="M37 8 Q34.5 14 33.5 19" stroke="#FF9E90" strokeWidth="1.6" strokeLinecap="round" opacity="0.7" />
+      <path d="M33.5 19 Q31.5 24 29.5 28" stroke="#FF9E90" strokeWidth="1.6" strokeLinecap="round" opacity="0.7" />
+      <path d="M29.5 28 Q27.5 32 26.5 35" stroke="#FF9E90" strokeWidth="1.6" strokeLinecap="round" opacity="0.7" />
+      <path d="M26.5 35 Q25 38 24 41" stroke="#FF9E90" strokeWidth="1.6" strokeLinecap="round" opacity="0.7" />
       {/* Cross connections - curved */}
-      <path d="M11 8 Q24 12 37 8" stroke="currentColor" strokeWidth="0.7" opacity="0.2" fill="none" />
-      <path d="M14.5 19 Q24 22 33.5 19" stroke="currentColor" strokeWidth="0.7" opacity="0.2" fill="none" />
-      <path d="M18.5 28 Q24 30.5 29.5 28" stroke="currentColor" strokeWidth="0.7" opacity="0.18" fill="none" />
-      <path d="M21.5 35 Q24 36.5 26.5 35" stroke="currentColor" strokeWidth="0.6" opacity="0.15" fill="none" />
+      <path d="M11 8 Q24 12 37 8" stroke="currentColor" strokeWidth="0.8" opacity="0.35" fill="none" />
+      <path d="M14.5 19 Q24 22 33.5 19" stroke="currentColor" strokeWidth="0.8" opacity="0.35" fill="none" />
+      <path d="M18.5 28 Q24 30.5 29.5 28" stroke="currentColor" strokeWidth="0.7" opacity="0.3" fill="none" />
+      <path d="M21.5 35 Q24 36.5 26.5 35" stroke="currentColor" strokeWidth="0.7" opacity="0.25" fill="none" />
       {/* Diagonal cross links */}
-      <path d="M11 8 Q20 20 29.5 28" stroke="currentColor" strokeWidth="0.5" opacity="0.12" fill="none" />
-      <path d="M37 8 Q28 20 18.5 28" stroke="currentColor" strokeWidth="0.5" opacity="0.12" fill="none" />
+      <path d="M11 8 Q20 20 29.5 28" stroke="currentColor" strokeWidth="0.6" opacity="0.2" fill="none" />
+      <path d="M37 8 Q28 20 18.5 28" stroke="currentColor" strokeWidth="0.6" opacity="0.2" fill="none" />
       {/* Nodes — coral accent */}
       <circle cx="11" cy="8" r="2.8" fill="#FF6B5A" />
       <circle cx="37" cy="8" r="2.8" fill="#FF6B5A" />
