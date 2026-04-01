@@ -1,14 +1,14 @@
 import Link from "next/link";
 import {
-  IconHarvest,
-  IconIntervisie,
+  IconSweatAndSoil,
+  IconIntervisio,
   IconInitiative,
 } from "@/components/icons/icons";
 import { cn } from "@/lib/utils";
 
 const projects = [
   {
-    icon: IconHarvest,
+    icon: IconSweatAndSoil,
     title: "Sweat & Soil",
     description:
       "Harvest trips that connect sports communities with Mediterranean farmers — combining nature, exercise, and meaningful work.",
@@ -17,10 +17,10 @@ const projects = [
     iconBg: "bg-green-900/30 text-green-300",
   },
   {
-    icon: IconIntervisie,
-    title: "GGZ Intervisie",
+    icon: IconIntervisio,
+    title: "Intervisio",
     description:
-      "A platform for mental health professionals to organize peer consultation sessions — strengthening specialist networks in the GGZ sector.",
+      "A platform for multidisciplinary peer consultation (intervisie) — connecting healthcare professionals across disciplines to learn from each other and improve care together.",
     status: "In development" as const,
     accent: "bg-blue-500/10 text-blue-400",
     iconBg: "bg-blue-900/30 text-blue-300",

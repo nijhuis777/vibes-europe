@@ -55,10 +55,10 @@ export function Footer() {
             </h4>
             <ul className="space-y-2">
               <li>
-                <span className="text-sm">Sweat & Soil</span>
+                <a href="https://sweatandsoil.com" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-white transition-colors">Sweat &amp; Soil</a>
               </li>
               <li>
-                <span className="text-sm">GGZ Intervisie</span>
+                <a href="https://intervisio.nl" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-white transition-colors">Intervisio</a>
               </li>
               <li>
                 <span className="text-sm opacity-50">More coming soon</span>

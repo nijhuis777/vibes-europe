@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  IconHarvest,
-  IconIntervisie,
+  IconSweatAndSoil,
+  IconIntervisio,
   IconInitiative,
 } from "@/components/icons/icons";
 import { cn } from "@/lib/utils";
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 const projects = [
   {
-    icon: IconHarvest,
+    icon: IconSweatAndSoil,
     title: "Sweat & Soil",
     status: "Active",
     statusColor: "bg-green-100 text-green-700",
@@ -31,20 +31,20 @@ const projects = [
     linkLabel: "Visit Sweat & Soil",
   },
   {
-    icon: IconIntervisie,
-    title: "GGZ Intervisie",
+    icon: IconIntervisio,
+    title: "Intervisio",
     status: "In development",
     statusColor: "bg-blue-100 text-blue-700",
     accentBorder: "border-l-blue-500",
     description:
-      "A dedicated platform for mental health professionals in the GGZ sector to organize and participate in peer consultation (intervisie) sessions. Strengthening professional networks and improving the quality of specialized mental health care.",
+      "A platform for multidisciplinary peer consultation (intervisie) — connecting healthcare professionals across disciplines to learn from each other and improve the quality of care together.",
     highlights: [
-      "Peer consultation matching for GGZ specialists",
+      "Multidisciplinary peer consultation matching",
       "Structured intervisie formats and scheduling",
-      "Building stronger professional communities in mental health",
+      "Building stronger cross-discipline networks in healthcare",
     ],
-    link: null,
-    linkLabel: null,
+    link: "https://intervisio.nl",
+    linkLabel: "Visit Intervisio",
   },
   {
     icon: IconInitiative,

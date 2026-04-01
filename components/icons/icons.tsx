@@ -4,8 +4,8 @@ interface IconProps extends SVGAttributes<SVGElement> {
   size?: number;
 }
 
-/** Harvest / olive branch icon for Sweat & Soil */
-export function IconHarvest({ size = 24, className, ...props }: IconProps) {
+/** Sweat & Soil text mark — wordmark with terracotta ampersand */
+export function IconSweatAndSoil({ size = 24, className, ...props }: IconProps) {
   return (
     <svg
       width={size}
@@ -15,40 +15,16 @@ export function IconHarvest({ size = 24, className, ...props }: IconProps) {
       className={className}
       {...props}
     >
-      {/* Main branch curve */}
-      <path
-        d="M4 20Q8 16 12 12Q16 8 20 4"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        fill="none"
-      />
-      {/* Leaf 1 */}
-      <path
-        d="M8 14Q6 11 9 10Q12 11 10 14Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-      />
-      {/* Leaf 2 */}
-      <path
-        d="M13 9Q11 6 14 5Q17 6 15 9Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-      />
-      {/* Small olive/berry */}
-      <circle cx="17" cy="7" r="1.5" stroke="currentColor" strokeWidth="1.5" fill="none" />
+      <text x="12" y="10" textAnchor="middle" fontFamily="system-ui, sans-serif" fontWeight="600" fontSize="5.5" fill="currentColor">Sweat</text>
+      <text x="12" y="16" textAnchor="middle" fontFamily="system-ui, sans-serif" fontWeight="600" fontSize="5.5" fill="currentColor">
+        <tspan fill="#C4704B">&amp;</tspan> Soil
+      </text>
     </svg>
   );
 }
 
-/** Overlapping circles / Venn diagram for GGZ Intervisie */
-export function IconIntervisie({ size = 24, className, ...props }: IconProps) {
+/** Intervisio logo — triangle of connected nodes forming a V */
+export function IconIntervisio({ size = 24, className, ...props }: IconProps) {
   return (
     <svg
       width={size}
@@ -58,16 +34,20 @@ export function IconIntervisie({ size = 24, className, ...props }: IconProps) {
       className={className}
       {...props}
     >
-      <circle cx="10" cy="10" r="5.5" stroke="currentColor" strokeWidth="2" fill="none" />
-      <circle cx="14" cy="10" r="5.5" stroke="currentColor" strokeWidth="2" fill="none" />
-      <circle cx="12" cy="14" r="5.5" stroke="currentColor" strokeWidth="2" fill="none" />
-      {/* Center dot */}
-      <circle cx="12" cy="11.5" r="1.2" fill="currentColor" />
+      {/* Three main nodes in triangle */}
+      <circle cx="8" cy="6" r="2.5" fill="#3D8C7E" />
+      <circle cx="16" cy="6" r="2.5" fill="#3D8C7E" />
+      <circle cx="12" cy="16" r="2.5" fill="#3D8C7E" />
+      {/* V-shape lines from top nodes to bottom */}
+      <line x1="8" y1="6" x2="12" y2="16" stroke="#3D8C7E" strokeWidth="2" strokeLinecap="round" />
+      <line x1="16" y1="6" x2="12" y2="16" stroke="#3D8C7E" strokeWidth="2" strokeLinecap="round" />
+      {/* Top connecting line */}
+      <line x1="8" y1="6" x2="16" y2="6" stroke="#3D8C7E" strokeWidth="2" strokeLinecap="round" />
     </svg>
   );
 }
 
-/** Seedling / sprout icon for future initiatives */
+/** Constellation initiative icon — upward growing node network */
 export function IconInitiative({ size = 24, className, ...props }: IconProps) {
   return (
     <svg
@@ -78,45 +58,34 @@ export function IconInitiative({ size = 24, className, ...props }: IconProps) {
       className={className}
       {...props}
     >
-      {/* Stem */}
-      <path
-        d="M12 20V10"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        fill="none"
-      />
-      {/* Left leaf */}
-      <path
-        d="M12 14Q8 12 7 8Q11 8 12 12"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-      />
-      {/* Right leaf */}
-      <path
-        d="M12 10Q16 8 17 4Q13 4 12 8"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-      />
-      {/* Ground line */}
-      <path
-        d="M8 20H16"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        fill="none"
-      />
+      {/* Root node */}
+      <circle cx="12" cy="20" r="1.8" fill="currentColor" />
+      {/* Stem nodes */}
+      <circle cx="12" cy="14" r="1.5" fill="currentColor" opacity="0.8" />
+      <circle cx="12" cy="8" r="1.3" fill="currentColor" opacity="0.7" />
+      {/* Branch nodes */}
+      <circle cx="7" cy="10" r="1.2" fill="currentColor" opacity="0.5" />
+      <circle cx="17" cy="6" r="1.2" fill="currentColor" opacity="0.5" />
+      {/* Top spark */}
+      <circle cx="12" cy="3" r="1.8" fill="currentColor" />
+      <circle cx="12" cy="3" r="3" fill="none" stroke="currentColor" strokeWidth="0.5" opacity="0.2" />
+      {/* Connections */}
+      <line x1="12" y1="20" x2="12" y2="14" stroke="currentColor" strokeWidth="0.8" opacity="0.35" />
+      <line x1="12" y1="14" x2="12" y2="8" stroke="currentColor" strokeWidth="0.8" opacity="0.35" />
+      <line x1="12" y1="8" x2="12" y2="3" stroke="currentColor" strokeWidth="0.8" opacity="0.35" />
+      {/* Branch connections */}
+      <line x1="12" y1="14" x2="7" y2="10" stroke="currentColor" strokeWidth="0.6" opacity="0.2" />
+      <line x1="12" y1="8" x2="17" y2="6" stroke="currentColor" strokeWidth="0.6" opacity="0.2" />
+      {/* Cross */}
+      <line x1="7" y1="10" x2="12" y2="8" stroke="currentColor" strokeWidth="0.4" opacity="0.1" />
+      {/* Ground dots */}
+      <circle cx="9" cy="21" r="0.6" fill="currentColor" opacity="0.3" />
+      <circle cx="15" cy="21" r="0.6" fill="currentColor" opacity="0.3" />
     </svg>
   );
 }
 
-/** Connected people for community */
+/** Constellation community icon — people as connected node pairs */
 export function IconCommunity({ size = 24, className, ...props }: IconProps) {
   return (
     <svg
@@ -127,29 +96,34 @@ export function IconCommunity({ size = 24, className, ...props }: IconProps) {
       className={className}
       {...props}
     >
-      {/* Person 1 - left */}
-      <circle cx="8" cy="7" r="2.5" stroke="currentColor" strokeWidth="2" fill="none" />
-      <path
-        d="M4 17Q4 13 8 13Q12 13 12 17"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        fill="none"
-      />
-      {/* Person 2 - right */}
-      <circle cx="16" cy="7" r="2.5" stroke="currentColor" strokeWidth="2" fill="none" />
-      <path
-        d="M12 17Q12 13 16 13Q20 13 20 17"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        fill="none"
-      />
+      {/* Person nodes - left cluster */}
+      <circle cx="7" cy="6" r="2" fill="currentColor" />
+      <circle cx="5" cy="13" r="1.3" fill="currentColor" opacity="0.6" />
+      <circle cx="9" cy="13" r="1.3" fill="currentColor" opacity="0.6" />
+      {/* Person nodes - right cluster */}
+      <circle cx="17" cy="6" r="2" fill="currentColor" />
+      <circle cx="15" cy="13" r="1.3" fill="currentColor" opacity="0.6" />
+      <circle cx="19" cy="13" r="1.3" fill="currentColor" opacity="0.6" />
+      {/* Bridge connection */}
+      <circle cx="12" cy="9" r="1" fill="currentColor" opacity="0.4" />
+      {/* Internal connections */}
+      <line x1="7" y1="6" x2="5" y2="13" stroke="currentColor" strokeWidth="0.7" opacity="0.3" />
+      <line x1="7" y1="6" x2="9" y2="13" stroke="currentColor" strokeWidth="0.7" opacity="0.3" />
+      <line x1="17" y1="6" x2="15" y2="13" stroke="currentColor" strokeWidth="0.7" opacity="0.3" />
+      <line x1="17" y1="6" x2="19" y2="13" stroke="currentColor" strokeWidth="0.7" opacity="0.3" />
+      {/* Cross cluster */}
+      <line x1="7" y1="6" x2="12" y2="9" stroke="currentColor" strokeWidth="0.6" opacity="0.2" />
+      <line x1="17" y1="6" x2="12" y2="9" stroke="currentColor" strokeWidth="0.6" opacity="0.2" />
+      <line x1="9" y1="13" x2="15" y2="13" stroke="currentColor" strokeWidth="0.4" opacity="0.1" />
+      {/* Bottom convergence */}
+      <circle cx="12" cy="18" r="1.5" fill="currentColor" opacity="0.5" />
+      <line x1="5" y1="13" x2="12" y2="18" stroke="currentColor" strokeWidth="0.5" opacity="0.15" />
+      <line x1="19" y1="13" x2="12" y2="18" stroke="currentColor" strokeWidth="0.5" opacity="0.15" />
     </svg>
   );
 }
 
-/** Tangled to straight line — simplify */
+/** Constellation simplify icon — tangled nodes converging to single path */
 export function IconSimplify({ size = 24, className, ...props }: IconProps) {
   return (
     <svg
@@ -160,35 +134,31 @@ export function IconSimplify({ size = 24, className, ...props }: IconProps) {
       className={className}
       {...props}
     >
-      {/* Tangled part */}
-      <path
-        d="M3 12Q5 8 6 12Q7 16 8 12Q9 8 10 12"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        fill="none"
-      />
-      {/* Straight part with arrow */}
-      <path
-        d="M10 12H20"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        fill="none"
-      />
-      <path
-        d="M17 9L20 12L17 15"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-      />
+      {/* Scattered input nodes */}
+      <circle cx="3" cy="6" r="1.2" fill="currentColor" opacity="0.5" />
+      <circle cx="5" cy="14" r="1.2" fill="currentColor" opacity="0.5" />
+      <circle cx="3" cy="18" r="1.2" fill="currentColor" opacity="0.5" />
+      <circle cx="7" cy="10" r="1" fill="currentColor" opacity="0.4" />
+      {/* Convergence node */}
+      <circle cx="12" cy="12" r="2" fill="currentColor" />
+      {/* Output node */}
+      <circle cx="21" cy="12" r="2" fill="currentColor" />
+      <circle cx="21" cy="12" r="3.2" fill="none" stroke="currentColor" strokeWidth="0.5" opacity="0.2" />
+      {/* Messy input connections */}
+      <line x1="3" y1="6" x2="12" y2="12" stroke="currentColor" strokeWidth="0.7" opacity="0.25" />
+      <line x1="5" y1="14" x2="12" y2="12" stroke="currentColor" strokeWidth="0.7" opacity="0.25" />
+      <line x1="3" y1="18" x2="12" y2="12" stroke="currentColor" strokeWidth="0.7" opacity="0.25" />
+      <line x1="7" y1="10" x2="12" y2="12" stroke="currentColor" strokeWidth="0.5" opacity="0.15" />
+      {/* Cross connections in chaos */}
+      <line x1="3" y1="6" x2="5" y2="14" stroke="currentColor" strokeWidth="0.3" opacity="0.08" />
+      <line x1="5" y1="14" x2="3" y2="18" stroke="currentColor" strokeWidth="0.3" opacity="0.08" />
+      {/* Clean output line */}
+      <line x1="12" y1="12" x2="21" y2="12" stroke="currentColor" strokeWidth="1.2" opacity="0.5" strokeLinecap="round" />
     </svg>
   );
 }
 
-/** Puzzle pieces clicking together — specialists */
+/** Constellation specialists icon — distinct nodes clicking into a network */
 export function IconSpecialists({ size = 24, className, ...props }: IconProps) {
   return (
     <svg
@@ -199,33 +169,26 @@ export function IconSpecialists({ size = 24, className, ...props }: IconProps) {
       className={className}
       {...props}
     >
-      {/* Left puzzle piece */}
-      <path
-        d="M3 6H8V8Q9.5 7 9.5 9Q9.5 11 8 10V14H3V10Q4.5 11 4.5 9Q4.5 7 3 8Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-      />
-      {/* Right puzzle piece */}
-      <path
-        d="M13 6H18V8Q19.5 7 19.5 9Q19.5 11 18 10V14H13V10Q14.5 11 14.5 9Q14.5 7 13 8Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-      />
-      {/* Arrow showing connection */}
-      <path
-        d="M9.5 10H13"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeDasharray="2 2"
-        fill="none"
-      />
+      {/* Specialist nodes in a pentagon-ish arrangement */}
+      <circle cx="12" cy="4" r="1.8" fill="currentColor" />
+      <circle cx="5" cy="10" r="1.8" fill="currentColor" />
+      <circle cx="19" cy="10" r="1.8" fill="currentColor" />
+      <circle cx="7" cy="18" r="1.8" fill="currentColor" />
+      <circle cx="17" cy="18" r="1.8" fill="currentColor" />
+      {/* Center hub */}
+      <circle cx="12" cy="12" r="1.3" fill="currentColor" opacity="0.6" />
+      {/* Connections to center */}
+      <line x1="12" y1="4" x2="12" y2="12" stroke="currentColor" strokeWidth="0.7" opacity="0.3" />
+      <line x1="5" y1="10" x2="12" y2="12" stroke="currentColor" strokeWidth="0.7" opacity="0.3" />
+      <line x1="19" y1="10" x2="12" y2="12" stroke="currentColor" strokeWidth="0.7" opacity="0.3" />
+      <line x1="7" y1="18" x2="12" y2="12" stroke="currentColor" strokeWidth="0.7" opacity="0.3" />
+      <line x1="17" y1="18" x2="12" y2="12" stroke="currentColor" strokeWidth="0.7" opacity="0.3" />
+      {/* Outer ring connections */}
+      <line x1="12" y1="4" x2="5" y2="10" stroke="currentColor" strokeWidth="0.4" opacity="0.12" />
+      <line x1="12" y1="4" x2="19" y2="10" stroke="currentColor" strokeWidth="0.4" opacity="0.12" />
+      <line x1="5" y1="10" x2="7" y2="18" stroke="currentColor" strokeWidth="0.4" opacity="0.12" />
+      <line x1="19" y1="10" x2="17" y2="18" stroke="currentColor" strokeWidth="0.4" opacity="0.12" />
+      <line x1="7" y1="18" x2="17" y2="18" stroke="currentColor" strokeWidth="0.4" opacity="0.12" />
     </svg>
   );
 }
