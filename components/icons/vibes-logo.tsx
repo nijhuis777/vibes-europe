@@ -14,39 +14,39 @@ export function VibesLogoMark({ className, size = 40 }: LogoProps) {
       fill="none"
       className={className}
     >
-      {/* Organic curved connections forming V */}
-      <path d="M11 10 Q13.5 16 14 20" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" opacity="0.35" />
-      <path d="M14 20 Q16 24 18 28" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" opacity="0.35" />
-      <path d="M18 28 Q20 32 21 35" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" opacity="0.35" />
-      <path d="M21 35 Q22.5 38 24 42" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" opacity="0.35" />
-      <path d="M37 10 Q34.5 16 34 20" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" opacity="0.35" />
-      <path d="M34 20 Q32 24 30 28" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" opacity="0.35" />
-      <path d="M30 28 Q28 32 27 35" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" opacity="0.35" />
-      <path d="M27 35 Q25.5 38 24 42" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" opacity="0.35" />
+      {/* Main V-arm connections */}
+      <path d="M11 8 Q13.5 14 14.5 19" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.55" />
+      <path d="M14.5 19 Q16.5 24 18.5 28" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.55" />
+      <path d="M18.5 28 Q20.5 32 21.5 35" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.55" />
+      <path d="M21.5 35 Q23 38 24 41" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.55" />
+      <path d="M37 8 Q34.5 14 33.5 19" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.55" />
+      <path d="M33.5 19 Q31.5 24 29.5 28" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.55" />
+      <path d="M29.5 28 Q27.5 32 26.5 35" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.55" />
+      <path d="M26.5 35 Q25 38 24 41" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.55" />
       {/* Cross connections - curved */}
-      <path d="M11 10 Q24 13 37 10" stroke="currentColor" strokeWidth="0.4" opacity="0.1" fill="none" />
-      <path d="M14 20 Q24 22.5 34 20" stroke="currentColor" strokeWidth="0.4" opacity="0.1" fill="none" />
-      <path d="M18 28 Q24 30 30 28" stroke="currentColor" strokeWidth="0.4" opacity="0.1" fill="none" />
-      <path d="M21 35 Q24 36.5 27 35" stroke="currentColor" strokeWidth="0.4" opacity="0.1" fill="none" />
+      <path d="M11 8 Q24 12 37 8" stroke="currentColor" strokeWidth="0.7" opacity="0.2" fill="none" />
+      <path d="M14.5 19 Q24 22 33.5 19" stroke="currentColor" strokeWidth="0.7" opacity="0.2" fill="none" />
+      <path d="M18.5 28 Q24 30.5 29.5 28" stroke="currentColor" strokeWidth="0.7" opacity="0.18" fill="none" />
+      <path d="M21.5 35 Q24 36.5 26.5 35" stroke="currentColor" strokeWidth="0.6" opacity="0.15" fill="none" />
       {/* Diagonal cross links */}
-      <path d="M11 10 Q20 22 30 28" stroke="currentColor" strokeWidth="0.3" opacity="0.07" fill="none" />
-      <path d="M37 10 Q28 22 18 28" stroke="currentColor" strokeWidth="0.3" opacity="0.07" fill="none" />
-      {/* Nodes */}
-      <circle cx="11" cy="10" r="1.7" fill="currentColor" />
-      <circle cx="37" cy="10" r="1.7" fill="currentColor" />
-      <circle cx="14" cy="20" r="1.2" fill="currentColor" opacity="0.8" />
-      <circle cx="34" cy="20" r="1.2" fill="currentColor" opacity="0.8" />
-      <circle cx="18" cy="28" r="1" fill="currentColor" opacity="0.85" />
-      <circle cx="30" cy="28" r="1" fill="currentColor" opacity="0.85" />
-      <circle cx="21" cy="35" r="1.2" fill="currentColor" opacity="0.8" />
-      <circle cx="27" cy="35" r="1.2" fill="currentColor" opacity="0.8" />
+      <path d="M11 8 Q20 20 29.5 28" stroke="currentColor" strokeWidth="0.5" opacity="0.12" fill="none" />
+      <path d="M37 8 Q28 20 18.5 28" stroke="currentColor" strokeWidth="0.5" opacity="0.12" fill="none" />
+      {/* Nodes — coral accent */}
+      <circle cx="11" cy="8" r="2.8" fill="#FF6B5A" />
+      <circle cx="37" cy="8" r="2.8" fill="#FF6B5A" />
+      <circle cx="14.5" cy="19" r="2" fill="#FF8A7A" />
+      <circle cx="33.5" cy="19" r="2" fill="#FF8A7A" />
+      <circle cx="18.5" cy="28" r="1.8" fill="#FF9E90" />
+      <circle cx="29.5" cy="28" r="1.8" fill="#FF9E90" />
+      <circle cx="21.5" cy="35" r="2" fill="#FF8A7A" />
+      <circle cx="26.5" cy="35" r="2" fill="#FF8A7A" />
       {/* Central convergence node */}
-      <circle cx="24" cy="42" r="2.4" fill="currentColor" />
-      <circle cx="24" cy="42" r="4" fill="none" stroke="currentColor" strokeWidth="0.5" opacity="0.2" />
+      <circle cx="24" cy="41" r="3.5" fill="#FF6B5A" />
+      <circle cx="24" cy="41" r="5.5" fill="none" stroke="#FF6B5A" strokeWidth="0.6" opacity="0.25" />
       {/* Small satellite nodes */}
-      <circle cx="9" cy="14" r="0.5" fill="currentColor" opacity="0.25" />
-      <circle cx="39" cy="14" r="0.5" fill="currentColor" opacity="0.25" />
-      <circle cx="24" cy="15" r="0.6" fill="currentColor" opacity="0.15" />
+      <circle cx="8" cy="13" r="0.8" fill="currentColor" opacity="0.3" />
+      <circle cx="40" cy="13" r="0.8" fill="currentColor" opacity="0.3" />
+      <circle cx="24" cy="13" r="0.9" fill="currentColor" opacity="0.2" />
     </svg>
   );
 }
