@@ -9,7 +9,6 @@ export const metadata: Metadata = {
 const photos = [
   { src: "/images/fleur/photo1.webp", alt: "Fleur" },
   { src: "/images/fleur/photo2.webp", alt: "Fleur met vrienden" },
-  { src: "/images/fleur/photo3.webp", alt: "Fleur met vrienden" },
   { src: "/images/fleur/photo4.webp", alt: "Fleur samen" },
   { src: "/images/fleur/photo5.jpg", alt: "Diner bij Lapsang" },
   { src: "/images/fleur/photo6.jpg", alt: "Verjaardag bij Lapsang" },
