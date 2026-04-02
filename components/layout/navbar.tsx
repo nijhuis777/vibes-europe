@@ -21,6 +21,7 @@ export function Navbar({ lang, dict }: NavbarProps) {
     { href: `/${lang}`, label: dict.nav.home },
     { href: `/${lang}/projects`, label: dict.nav.projects },
     { href: `/${lang}/#contact`, label: dict.nav.contact },
+    { href: "/fleur", label: "Fleur 🎉" },
   ];
 
   useEffect(() => {
