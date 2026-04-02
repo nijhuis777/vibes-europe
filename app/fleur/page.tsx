@@ -13,6 +13,7 @@ const photos = [
   { src: "/images/fleur/photo4.webp", alt: "Fleur samen" },
   { src: "/images/fleur/photo5.jpg", alt: "Diner bij Lapsang" },
   { src: "/images/fleur/photo6.jpg", alt: "Verjaardag bij Lapsang" },
+  { src: "/images/fleur/photo7.jpg", alt: "Samen bij Lapsang" },
 ];
 
 export default function FleurPage() {
