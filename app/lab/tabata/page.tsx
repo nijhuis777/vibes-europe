@@ -258,14 +258,7 @@ export default function TimerPage() {
   if (phase === "idle") {
     return (
       <div className="min-h-screen bg-[#0B1426] text-white flex flex-col">
-        <header className="px-6 pt-4">
-          <Link
-            href="/lab"
-            className="text-white/40 hover:text-white text-sm transition-colors"
-          >
-            &larr; The Lab
-          </Link>
-        </header>
+        <header className="px-6 pt-4" />
 
         <div className="flex-1 flex flex-col items-center justify-center px-4 py-8">
           {/* Title */}
