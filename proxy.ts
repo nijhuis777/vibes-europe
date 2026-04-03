@@ -26,7 +26,7 @@ export function proxy(request: NextRequest) {
   if (pathnameHasLocale) return;
 
   // Skip locale redirect for standalone pages
-  if (pathname.startsWith("/fleur")) return;
+  if (pathname.startsWith("/fleur") || pathname.startsWith("/lab")) return;
 
   const locale = getLocale(request);
   request.nextUrl.pathname = `/${locale}${pathname}`;
