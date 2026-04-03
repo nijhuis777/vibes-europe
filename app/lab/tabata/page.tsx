@@ -267,9 +267,68 @@ export default function TimerPage() {
           </Link>
         </header>
 
-        <div className="flex-1 flex flex-col items-center justify-center px-4 py-8">
-          {/* Title */}
-          <div className="text-center mb-8">
+        <div className="flex-1 flex flex-col items-center justify-center px-4 py-8 relative overflow-hidden">
+          {/* Background Vibes constellation watermark */}
+          <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none">
+            <svg width="500" height="500" viewBox="0 0 48 48" fill="none">
+              <path d="M11 8 Q13.5 14 14.5 19" stroke="white" strokeWidth="1.6" strokeLinecap="round" opacity="0.7" />
+              <path d="M14.5 19 Q16.5 24 18.5 28" stroke="white" strokeWidth="1.6" strokeLinecap="round" opacity="0.7" />
+              <path d="M18.5 28 Q20.5 32 21.5 35" stroke="white" strokeWidth="1.6" strokeLinecap="round" opacity="0.7" />
+              <path d="M21.5 35 Q23 38 24 41" stroke="white" strokeWidth="1.6" strokeLinecap="round" opacity="0.7" />
+              <path d="M37 8 Q34.5 14 33.5 19" stroke="white" strokeWidth="1.6" strokeLinecap="round" opacity="0.7" />
+              <path d="M33.5 19 Q31.5 24 29.5 28" stroke="white" strokeWidth="1.6" strokeLinecap="round" opacity="0.7" />
+              <path d="M29.5 28 Q27.5 32 26.5 35" stroke="white" strokeWidth="1.6" strokeLinecap="round" opacity="0.7" />
+              <path d="M26.5 35 Q25 38 24 41" stroke="white" strokeWidth="1.6" strokeLinecap="round" opacity="0.7" />
+              <path d="M11 8 Q24 12 37 8" stroke="white" strokeWidth="0.8" opacity="0.35" fill="none" />
+              <path d="M14.5 19 Q24 22 33.5 19" stroke="white" strokeWidth="0.8" opacity="0.35" fill="none" />
+              <path d="M18.5 28 Q24 30.5 29.5 28" stroke="white" strokeWidth="0.7" opacity="0.3" fill="none" />
+              <circle cx="11" cy="8" r="2.8" fill="white" />
+              <circle cx="37" cy="8" r="2.8" fill="white" />
+              <circle cx="14.5" cy="19" r="2" fill="white" />
+              <circle cx="33.5" cy="19" r="2" fill="white" />
+              <circle cx="18.5" cy="28" r="1.8" fill="white" />
+              <circle cx="29.5" cy="28" r="1.8" fill="white" />
+              <circle cx="21.5" cy="35" r="2" fill="white" />
+              <circle cx="26.5" cy="35" r="2" fill="white" />
+              <circle cx="24" cy="41" r="3.5" fill="white" />
+            </svg>
+          </div>
+
+          {/* Title with athlete icon */}
+          <div className="relative z-10 text-center mb-8">
+            {/* Athlete SVG */}
+            <div className="mx-auto mb-4 w-20 h-20 rounded-2xl bg-gradient-to-br from-orange-500/20 to-red-500/20 border border-white/10 flex items-center justify-center">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                {/* Head */}
+                <circle cx="24" cy="8" r="4" fill="none" stroke="#FF6B5A" strokeWidth="2" />
+                {/* Body */}
+                <line x1="24" y1="12" x2="24" y2="28" stroke="#FF6B5A" strokeWidth="2" strokeLinecap="round" />
+                {/* Arms up - like a snatch/overhead position */}
+                <path d="M24 18 L14 10" stroke="#FF6B5A" strokeWidth="2" strokeLinecap="round" />
+                <path d="M24 18 L34 10" stroke="#FF6B5A" strokeWidth="2" strokeLinecap="round" />
+                {/* Barbell */}
+                <line x1="10" y1="10" x2="38" y2="10" stroke="#FF6B5A" strokeWidth="2.5" strokeLinecap="round" />
+                {/* Weight plates */}
+                <line x1="10" y1="6" x2="10" y2="14" stroke="#FF6B5A" strokeWidth="3" strokeLinecap="round" />
+                <line x1="38" y1="6" x2="38" y2="14" stroke="#FF6B5A" strokeWidth="3" strokeLinecap="round" />
+                {/* Legs - squat position */}
+                <path d="M24 28 L18 36 L14 42" stroke="#FF6B5A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M24 28 L30 36 L34 42" stroke="#FF6B5A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
+            {/* Vibes logo small */}
+            <div className="flex items-center justify-center gap-1.5 mb-3">
+              <svg width="16" height="16" viewBox="0 0 48 48" fill="none" className="opacity-40">
+                <circle cx="11" cy="8" r="2.8" fill="#FF6B5A" />
+                <circle cx="37" cy="8" r="2.8" fill="#FF6B5A" />
+                <circle cx="24" cy="41" r="3.5" fill="#FF6B5A" />
+                <path d="M11 8 Q13.5 14 14.5 19" stroke="#FF9E90" strokeWidth="1.6" strokeLinecap="round" opacity="0.7" />
+                <path d="M37 8 Q34.5 14 33.5 19" stroke="#FF9E90" strokeWidth="1.6" strokeLinecap="round" opacity="0.7" />
+                <path d="M14.5 19 Q19 30 24 41" stroke="#FF9E90" strokeWidth="1.6" strokeLinecap="round" opacity="0.7" />
+                <path d="M33.5 19 Q29 30 24 41" stroke="#FF9E90" strokeWidth="1.6" strokeLinecap="round" opacity="0.7" />
+              </svg>
+              <span className="text-white/20 text-[10px] tracking-[0.2em] uppercase font-medium">Vibes Europe</span>
+            </div>
             <h1 className="text-4xl font-black tracking-tight mb-1">WOD TIMER</h1>
             <p className="text-white/40 text-sm">Choose your workout format</p>
           </div>
@@ -358,7 +417,20 @@ export default function TimerPage() {
     return (
       <div className="min-h-screen bg-[#0B1426] text-white flex flex-col items-center justify-center px-4">
         <div className="text-center">
-          <div className="text-8xl mb-4">&#127881;</div>
+          {/* Athlete celebration */}
+          <div className="mx-auto mb-4 w-20 h-20 rounded-2xl bg-gradient-to-br from-orange-500/20 to-red-500/20 border border-white/10 flex items-center justify-center">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+              <circle cx="24" cy="8" r="4" fill="none" stroke="#FF6B5A" strokeWidth="2" />
+              <line x1="24" y1="12" x2="24" y2="28" stroke="#FF6B5A" strokeWidth="2" strokeLinecap="round" />
+              <path d="M24 18 L14 10" stroke="#FF6B5A" strokeWidth="2" strokeLinecap="round" />
+              <path d="M24 18 L34 10" stroke="#FF6B5A" strokeWidth="2" strokeLinecap="round" />
+              <line x1="10" y1="10" x2="38" y2="10" stroke="#FF6B5A" strokeWidth="2.5" strokeLinecap="round" />
+              <line x1="10" y1="6" x2="10" y2="14" stroke="#FF6B5A" strokeWidth="3" strokeLinecap="round" />
+              <line x1="38" y1="6" x2="38" y2="14" stroke="#FF6B5A" strokeWidth="3" strokeLinecap="round" />
+              <path d="M24 28 L18 36 L14 42" stroke="#FF6B5A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M24 28 L30 36 L34 42" stroke="#FF6B5A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </div>
           <h1 className="text-5xl font-black mb-3">DONE!</h1>
           <p className="text-white/50 text-xl font-medium mb-2">
             {mode.toUpperCase()} &middot; {fmt(totalDuration)}
