@@ -10,9 +10,9 @@ export const metadata: Metadata = {
 const tools = [
   {
     slug: "tabata",
-    title: "Tabata Timer",
+    title: "WOD Timer",
     description:
-      "Interval timer voor high-intensity workouts. Configureer rounds, sets, werk- en rusttijden.",
+      "CrossFit timer met Tabata, EMOM, AMRAP en For Time modes. Volledig configureerbaar met geluidssignalen.",
     emoji: "⏱️",
     accent: "from-orange-500 to-red-500",
     status: "Live",

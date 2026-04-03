@@ -3,8 +3,18 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 
+// ── Types ──────────────────────────────────────────────────────────────────
+type Mode = "tabata" | "emom" | "amrap" | "fortime";
 type Phase = "idle" | "countdown" | "work" | "rest" | "roundBreak" | "done";
 
+const modes: { key: Mode; label: string; desc: string }[] = [
+  { key: "tabata", label: "Tabata", desc: "Work / rest intervals" },
+  { key: "emom", label: "EMOM", desc: "Every Minute On the Minute" },
+  { key: "amrap", label: "AMRAP", desc: "As Many Reps As Possible" },
+  { key: "fortime", label: "For Time", desc: "Simple countdown" },
+];
+
+// ── Audio ──────────────────────────────────────────────────────────────────
 function useBeep() {
   const ctxRef = useRef<AudioContext | null>(null);
 
@@ -31,33 +41,52 @@ function useBeep() {
     }
   }
 
-  const workBeep = () => beep(880, 0.15, 3);
-  const restBeep = () => beep(440, 0.3, 2);
-  const countdownBeep = () => beep(660, 0.1, 1);
-  const doneBeep = () => {
-    beep(523, 0.2, 1);
-    setTimeout(() => beep(659, 0.2, 1), 250);
-    setTimeout(() => beep(784, 0.2, 1), 500);
-    setTimeout(() => beep(1047, 0.4, 1), 750);
+  return {
+    workBeep: () => beep(880, 0.15, 3),
+    restBeep: () => beep(440, 0.3, 2),
+    countdownBeep: () => beep(660, 0.1, 1),
+    minuteBeep: () => beep(800, 0.12, 2),
+    doneBeep: () => {
+      beep(523, 0.2, 1);
+      setTimeout(() => beep(659, 0.2, 1), 250);
+      setTimeout(() => beep(784, 0.2, 1), 500);
+      setTimeout(() => beep(1047, 0.4, 1), 750);
+    },
   };
-
-  return { workBeep, restBeep, countdownBeep, doneBeep };
 }
 
-export default function TabataPage() {
+// ── Helpers ─────────────────────────────────────────────────────────────────
+const fmt = (s: number) =>
+  `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
+
+// ── Component ──────────────────────────────────────────────────────────────
+export default function TimerPage() {
+  // Mode
+  const [mode, setMode] = useState<Mode>("tabata");
+
+  // Tabata settings
   const [rounds, setRounds] = useState(8);
   const [sets, setSets] = useState(1);
   const [workTime, setWorkTime] = useState(20);
   const [restTime, setRestTime] = useState(10);
   const [roundBreakTime, setRoundBreakTime] = useState(60);
 
+  // EMOM settings
+  const [emomMinutes, setEmomMinutes] = useState(10);
+
+  // AMRAP / For Time settings
+  const [timerMinutes, setTimerMinutes] = useState(12);
+
+  // Timer state
   const [phase, setPhase] = useState<Phase>("idle");
   const [timeLeft, setTimeLeft] = useState(0);
   const [currentRound, setCurrentRound] = useState(0);
   const [currentSet, setCurrentSet] = useState(0);
+  const [totalDuration, setTotalDuration] = useState(0);
+  const [amrapRounds, setAmrapRounds] = useState(0);
 
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const { workBeep, restBeep, countdownBeep, doneBeep } = useBeep();
+  const audio = useBeep();
 
   const clearTimer = useCallback(() => {
     if (intervalRef.current) {
@@ -66,41 +95,76 @@ export default function TabataPage() {
     }
   }, []);
 
-  const nextPhase = useCallback(() => {
+  // ── Tabata phase transitions ──────────────────────────────────────────
+  const nextTabataPhase = useCallback(() => {
     if (phase === "countdown") {
       setPhase("work");
       setTimeLeft(workTime);
       setCurrentRound(1);
       setCurrentSet(1);
-      workBeep();
+      audio.workBeep();
     } else if (phase === "work") {
       if (currentRound < rounds) {
         setPhase("rest");
         setTimeLeft(restTime);
-        restBeep();
+        audio.restBeep();
       } else if (currentSet < sets) {
         setPhase("roundBreak");
         setTimeLeft(roundBreakTime);
-        restBeep();
+        audio.restBeep();
       } else {
         setPhase("done");
         setTimeLeft(0);
-        doneBeep();
+        audio.doneBeep();
       }
     } else if (phase === "rest") {
       setPhase("work");
       setCurrentRound((r) => r + 1);
       setTimeLeft(workTime);
-      workBeep();
+      audio.workBeep();
     } else if (phase === "roundBreak") {
       setPhase("work");
       setCurrentSet((s) => s + 1);
       setCurrentRound(1);
       setTimeLeft(workTime);
-      workBeep();
+      audio.workBeep();
     }
-  }, [phase, currentRound, currentSet, rounds, sets, workTime, restTime, roundBreakTime, workBeep, restBeep, doneBeep]);
+  }, [phase, currentRound, currentSet, rounds, sets, workTime, restTime, roundBreakTime, audio]);
 
+  // ── EMOM phase transitions ────────────────────────────────────────────
+  const nextEmomPhase = useCallback(() => {
+    if (phase === "countdown") {
+      setPhase("work");
+      setTimeLeft(60);
+      setCurrentRound(1);
+      audio.minuteBeep();
+    } else if (phase === "work") {
+      if (currentRound < emomMinutes) {
+        setCurrentRound((r) => r + 1);
+        setTimeLeft(60);
+        audio.minuteBeep();
+      } else {
+        setPhase("done");
+        setTimeLeft(0);
+        audio.doneBeep();
+      }
+    }
+  }, [phase, currentRound, emomMinutes, audio]);
+
+  // ── AMRAP / For Time phase transitions ────────────────────────────────
+  const nextSimplePhase = useCallback(() => {
+    if (phase === "countdown") {
+      setPhase("work");
+      setTimeLeft(timerMinutes * 60);
+      audio.workBeep();
+    } else if (phase === "work") {
+      setPhase("done");
+      setTimeLeft(0);
+      audio.doneBeep();
+    }
+  }, [phase, timerMinutes, audio]);
+
+  // ── Tick ──────────────────────────────────────────────────────────────
   useEffect(() => {
     if (phase === "idle" || phase === "done") {
       clearTimer();
@@ -110,26 +174,42 @@ export default function TabataPage() {
     intervalRef.current = setInterval(() => {
       setTimeLeft((t) => {
         if (t <= 1) return 0;
-        if (t <= 4 && t > 1) countdownBeep();
+        if (t <= 4 && t > 1) audio.countdownBeep();
         return t - 1;
       });
     }, 1000);
 
     return clearTimer;
-  }, [phase, clearTimer, countdownBeep]);
+  }, [phase, clearTimer, audio]);
 
+  // ── When timeLeft hits 0 ──────────────────────────────────────────────
   useEffect(() => {
     if (timeLeft === 0 && phase !== "idle" && phase !== "done") {
-      nextPhase();
+      if (mode === "tabata") nextTabataPhase();
+      else if (mode === "emom") nextEmomPhase();
+      else nextSimplePhase();
     }
-  }, [timeLeft, phase, nextPhase]);
+  }, [timeLeft, phase, mode, nextTabataPhase, nextEmomPhase, nextSimplePhase]);
 
+  // ── Actions ───────────────────────────────────────────────────────────
   function startTimer() {
     setPhase("countdown");
     setTimeLeft(5);
     setCurrentRound(0);
     setCurrentSet(0);
-    countdownBeep();
+    setAmrapRounds(0);
+    audio.countdownBeep();
+
+    if (mode === "tabata") {
+      setTotalDuration(
+        sets * (rounds * workTime + (rounds - 1) * restTime) +
+          (sets - 1) * roundBreakTime
+      );
+    } else if (mode === "emom") {
+      setTotalDuration(emomMinutes * 60);
+    } else {
+      setTotalDuration(timerMinutes * 60);
+    }
   }
 
   function stopTimer() {
@@ -138,113 +218,203 @@ export default function TabataPage() {
     setTimeLeft(0);
   }
 
-  const formatTime = (s: number) =>
-    `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
+  // ── Progress for ring ─────────────────────────────────────────────────
+  function getProgress(): number {
+    if (mode === "tabata") {
+      if (phase === "work") return (workTime - timeLeft) / workTime;
+      if (phase === "rest") return (restTime - timeLeft) / restTime;
+      if (phase === "roundBreak") return (roundBreakTime - timeLeft) / roundBreakTime;
+      if (phase === "countdown") return (5 - timeLeft) / 5;
+    }
+    if (mode === "emom") {
+      if (phase === "work") return (60 - timeLeft) / 60;
+      if (phase === "countdown") return (5 - timeLeft) / 5;
+    }
+    if (mode === "amrap" || mode === "fortime") {
+      if (phase === "work") return (timerMinutes * 60 - timeLeft) / (timerMinutes * 60);
+      if (phase === "countdown") return (5 - timeLeft) / 5;
+    }
+    return 0;
+  }
 
-  const totalTime = sets * (rounds * workTime + (rounds - 1) * restTime) + (sets - 1) * roundBreakTime;
-
-  const phaseLabel: Record<Phase, string> = {
-    idle: "",
-    countdown: "GET READY!",
-    work: "GO GO GO!",
-    rest: "REST",
-    roundBreak: "BREAK",
-    done: "",
-  };
-
+  // ── Phase colors ──────────────────────────────────────────────────────
   const phaseBg: Record<Phase, string> = {
-    idle: "bg-orange-500",
+    idle: "bg-[#0B1426]",
     countdown: "bg-yellow-500",
     work: "bg-red-600",
     rest: "bg-green-600",
     roundBreak: "bg-blue-600",
-    done: "bg-orange-500",
+    done: "bg-[#0B1426]",
   };
 
-  // Settings screen
+  const modeAccent: Record<Mode, string> = {
+    tabata: "from-orange-500 to-red-500",
+    emom: "from-cyan-500 to-blue-500",
+    amrap: "from-purple-500 to-pink-500",
+    fortime: "from-emerald-500 to-teal-500",
+  };
+
+  // ── Settings screen ───────────────────────────────────────────────────
   if (phase === "idle") {
     return (
-      <div className="flex-1 flex flex-col items-center justify-center px-4 py-8 bg-orange-500 min-h-screen text-white">
-        <Link
-          href="/lab"
-          className="absolute top-4 left-4 text-white/50 hover:text-white text-sm transition-colors"
-        >
-          &larr; The Lab
-        </Link>
+      <div className="min-h-screen bg-[#0B1426] text-white flex flex-col">
+        <header className="px-6 pt-4">
+          <Link
+            href="/lab"
+            className="text-white/40 hover:text-white text-sm transition-colors"
+          >
+            &larr; The Lab
+          </Link>
+        </header>
 
-        <div className="text-center mb-8">
-          <h1 className="text-5xl font-black tracking-tight mb-2">TABATA</h1>
-          <p className="text-orange-200 text-lg font-medium">Push your limits</p>
-        </div>
-
-        <div className="w-full max-w-sm space-y-4">
-          <SettingRow label="Rounds" value={rounds} onChange={setRounds} min={1} max={20} />
-          <SettingRow label="Sets" value={sets} onChange={setSets} min={1} max={10} />
-          <SettingRow label="Work (sec)" value={workTime} onChange={setWorkTime} min={5} max={120} step={5} />
-          <SettingRow label="Rest (sec)" value={restTime} onChange={setRestTime} min={5} max={120} step={5} />
-          {sets > 1 && (
-            <SettingRow label="Set break (sec)" value={roundBreakTime} onChange={setRoundBreakTime} min={10} max={300} step={10} />
-          )}
-
-          <div className="text-center text-orange-200 text-sm mt-2">
-            Total: {formatTime(totalTime)}
+        <div className="flex-1 flex flex-col items-center justify-center px-4 py-8">
+          {/* Title */}
+          <div className="text-center mb-8">
+            <h1 className="text-4xl font-black tracking-tight mb-1">WOD TIMER</h1>
+            <p className="text-white/40 text-sm">Choose your workout format</p>
           </div>
 
-          <button
-            onClick={startTimer}
-            className="w-full py-5 bg-white text-orange-600 text-2xl font-black rounded-2xl shadow-lg hover:bg-orange-100 active:scale-95 transition-all mt-6"
-          >
-            START
-          </button>
-        </div>
+          {/* Mode selector */}
+          <div className="grid grid-cols-2 gap-3 w-full max-w-sm mb-8">
+            {modes.map((m) => (
+              <button
+                key={m.key}
+                onClick={() => setMode(m.key)}
+                className={`rounded-xl px-4 py-3 text-left transition-all border ${
+                  mode === m.key
+                    ? `bg-gradient-to-br ${modeAccent[m.key]} border-transparent`
+                    : "bg-white/5 border-white/10 hover:border-white/20"
+                }`}
+              >
+                <span className="block font-bold text-sm">{m.label}</span>
+                <span className={`block text-xs mt-0.5 ${mode === m.key ? "text-white/80" : "text-white/30"}`}>
+                  {m.desc}
+                </span>
+              </button>
+            ))}
+          </div>
 
-        <p className="text-orange-300 text-xs mt-8">Tap START and give it everything you&apos;ve got!</p>
+          {/* Settings per mode */}
+          <div className="w-full max-w-sm space-y-3">
+            {mode === "tabata" && (
+              <>
+                <SettingRow label="Rounds" value={rounds} onChange={setRounds} min={1} max={20} />
+                <SettingRow label="Sets" value={sets} onChange={setSets} min={1} max={10} />
+                <SettingRow label="Work (sec)" value={workTime} onChange={setWorkTime} min={5} max={120} step={5} />
+                <SettingRow label="Rest (sec)" value={restTime} onChange={setRestTime} min={5} max={120} step={5} />
+                {sets > 1 && (
+                  <SettingRow label="Set break (sec)" value={roundBreakTime} onChange={setRoundBreakTime} min={10} max={300} step={10} />
+                )}
+                <div className="text-center text-white/30 text-sm pt-1">
+                  Total: {fmt(
+                    sets * (rounds * workTime + (rounds - 1) * restTime) +
+                      (sets - 1) * roundBreakTime
+                  )}
+                </div>
+              </>
+            )}
+
+            {mode === "emom" && (
+              <>
+                <SettingRow label="Minutes" value={emomMinutes} onChange={setEmomMinutes} min={1} max={60} />
+                <div className="text-center text-white/30 text-sm pt-1">
+                  {emomMinutes} rounds of 1 minute
+                </div>
+              </>
+            )}
+
+            {mode === "amrap" && (
+              <>
+                <SettingRow label="Minutes" value={timerMinutes} onChange={setTimerMinutes} min={1} max={60} />
+                <div className="text-center text-white/30 text-sm pt-1">
+                  Complete as many rounds as possible in {timerMinutes} min
+                </div>
+              </>
+            )}
+
+            {mode === "fortime" && (
+              <>
+                <SettingRow label="Minutes" value={timerMinutes} onChange={setTimerMinutes} min={1} max={60} />
+                <div className="text-center text-white/30 text-sm pt-1">
+                  Time cap: {fmt(timerMinutes * 60)}
+                </div>
+              </>
+            )}
+
+            <button
+              onClick={startTimer}
+              className={`w-full py-5 bg-gradient-to-r ${modeAccent[mode]} text-white text-2xl font-black rounded-2xl shadow-lg hover:opacity-90 active:scale-95 transition-all mt-4`}
+            >
+              START
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
 
-  // Done screen
+  // ── Done screen ───────────────────────────────────────────────────────
   if (phase === "done") {
     return (
-      <div className="flex-1 flex flex-col items-center justify-center px-4 bg-orange-500 min-h-screen text-white">
-        <div className="text-center animate-bounce">
+      <div className="min-h-screen bg-[#0B1426] text-white flex flex-col items-center justify-center px-4">
+        <div className="text-center">
           <div className="text-8xl mb-4">&#127881;</div>
-          <h1 className="text-5xl font-black mb-3">CRUSHED IT!</h1>
-          <p className="text-orange-200 text-xl font-medium mb-2">
-            {sets} set{sets > 1 ? "s" : ""} &middot; {rounds} rounds &middot; {formatTime(totalTime)}
+          <h1 className="text-5xl font-black mb-3">DONE!</h1>
+          <p className="text-white/50 text-xl font-medium mb-2">
+            {mode.toUpperCase()} &middot; {fmt(totalDuration)}
           </p>
-          <p className="text-orange-300 text-base">You&apos;re a machine. Come back tomorrow!</p>
+          {mode === "tabata" && (
+            <p className="text-white/30 text-base">
+              {sets} set{sets > 1 ? "s" : ""} &middot; {rounds} rounds
+            </p>
+          )}
+          {mode === "emom" && (
+            <p className="text-white/30 text-base">{emomMinutes} minutes</p>
+          )}
+          {mode === "amrap" && amrapRounds > 0 && (
+            <p className="text-white/30 text-base">{amrapRounds} rounds completed</p>
+          )}
         </div>
         <button
           onClick={stopTimer}
-          className="mt-10 px-10 py-4 bg-white text-orange-600 text-xl font-black rounded-2xl shadow-lg hover:bg-orange-100 active:scale-95 transition-all"
+          className={`mt-10 px-10 py-4 bg-gradient-to-r ${modeAccent[mode]} text-white text-xl font-black rounded-2xl shadow-lg hover:opacity-90 active:scale-95 transition-all`}
         >
-          AGAIN?
+          AGAIN
         </button>
       </div>
     );
   }
 
-  // Active timer
-  const progress = phase === "work"
-    ? (workTime - timeLeft) / workTime
-    : phase === "rest"
-    ? (restTime - timeLeft) / restTime
-    : phase === "roundBreak"
-    ? (roundBreakTime - timeLeft) / roundBreakTime
-    : phase === "countdown"
-    ? (5 - timeLeft) / 5
-    : 0;
+  // ── Active timer ──────────────────────────────────────────────────────
+  const progress = getProgress();
+
+  const phaseLabel: Record<Phase, string> = {
+    idle: "",
+    countdown: "GET READY",
+    work: mode === "emom" ? "GO" : mode === "amrap" || mode === "fortime" ? "PUSH IT" : "WORK",
+    rest: "REST",
+    roundBreak: "BREAK",
+    done: "",
+  };
 
   return (
-    <div className={`flex-1 flex flex-col items-center justify-center px-4 min-h-screen transition-colors duration-500 text-white ${phaseBg[phase]}`}>
+    <div
+      className={`min-h-screen flex flex-col items-center justify-center px-4 transition-colors duration-500 text-white ${phaseBg[phase]}`}
+    >
+      {/* Mode badge */}
+      <div className={`mb-4 px-4 py-1 rounded-full bg-gradient-to-r ${modeAccent[mode]} text-xs font-bold uppercase tracking-wider`}>
+        {mode}
+      </div>
+
+      {/* Phase label */}
       <p className="text-white/70 text-lg font-bold tracking-widest uppercase mb-2">
         {phaseLabel[phase]}
       </p>
 
+      {/* Big timer */}
       <div className="relative w-64 h-64 flex items-center justify-center mb-6">
         <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r="45" fill="none" stroke="white" strokeWidth="4" opacity="0.2" />
+          <circle cx="50" cy="50" r="45" fill="none" stroke="white" strokeWidth="4" opacity="0.15" />
           <circle
             cx="50"
             cy="50"
@@ -258,20 +428,53 @@ export default function TabataPage() {
             className="transition-all duration-1000 ease-linear"
           />
         </svg>
-        <span className="text-7xl font-black tabular-nums">{timeLeft}</span>
+        <span className="text-7xl font-black tabular-nums">
+          {phase === "countdown" ? timeLeft : fmt(timeLeft)}
+        </span>
       </div>
 
+      {/* Round info */}
       <div className="text-center mb-8">
-        <p className="text-2xl font-bold">
-          Round {currentRound}/{rounds}
-        </p>
-        {sets > 1 && (
-          <p className="text-white/70 text-base">
-            Set {currentSet}/{sets}
+        {mode === "tabata" && phase !== "countdown" && (
+          <>
+            <p className="text-2xl font-bold">
+              Round {currentRound}/{rounds}
+            </p>
+            {sets > 1 && (
+              <p className="text-white/50 text-base">
+                Set {currentSet}/{sets}
+              </p>
+            )}
+          </>
+        )}
+        {mode === "emom" && phase !== "countdown" && (
+          <p className="text-2xl font-bold">
+            Minute {currentRound}/{emomMinutes}
           </p>
+        )}
+        {mode === "amrap" && phase !== "countdown" && (
+          <div className="flex flex-col items-center gap-2">
+            <p className="text-white/50 text-sm">Rounds completed</p>
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => setAmrapRounds((r) => Math.max(0, r - 1))}
+                className="w-10 h-10 rounded-full bg-white/20 text-white font-bold text-lg flex items-center justify-center hover:bg-white/30 active:scale-90 transition-all"
+              >
+                &minus;
+              </button>
+              <span className="text-3xl font-black tabular-nums w-12 text-center">{amrapRounds}</span>
+              <button
+                onClick={() => setAmrapRounds((r) => r + 1)}
+                className="w-10 h-10 rounded-full bg-white/20 text-white font-bold text-lg flex items-center justify-center hover:bg-white/30 active:scale-90 transition-all"
+              >
+                +
+              </button>
+            </div>
+          </div>
         )}
       </div>
 
+      {/* Stop button */}
       <button
         onClick={stopTimer}
         className="px-8 py-3 bg-white/20 text-white text-lg font-bold rounded-xl border-2 border-white/30 hover:bg-white/30 active:scale-95 transition-all"
@@ -282,6 +485,7 @@ export default function TabataPage() {
   );
 }
 
+// ── Setting row component ─────────────────────────────────────────────────
 function SettingRow({
   label,
   value,
@@ -298,19 +502,19 @@ function SettingRow({
   step?: number;
 }) {
   return (
-    <div className="flex items-center justify-between bg-white/15 rounded-xl px-5 py-3">
-      <span className="font-bold text-base">{label}</span>
+    <div className="flex items-center justify-between bg-white/5 border border-white/10 rounded-xl px-5 py-3">
+      <span className="font-bold text-sm text-white/70">{label}</span>
       <div className="flex items-center gap-3">
         <button
           onClick={() => onChange(Math.max(min, value - step))}
-          className="w-9 h-9 rounded-full bg-white/20 text-white font-bold text-lg flex items-center justify-center hover:bg-white/30 active:scale-90 transition-all"
+          className="w-9 h-9 rounded-full bg-white/10 text-white font-bold text-lg flex items-center justify-center hover:bg-white/20 active:scale-90 transition-all"
         >
           &minus;
         </button>
         <span className="w-12 text-center font-black text-xl tabular-nums">{value}</span>
         <button
           onClick={() => onChange(Math.min(max, value + step))}
-          className="w-9 h-9 rounded-full bg-white/20 text-white font-bold text-lg flex items-center justify-center hover:bg-white/30 active:scale-90 transition-all"
+          className="w-9 h-9 rounded-full bg-white/10 text-white font-bold text-lg flex items-center justify-center hover:bg-white/20 active:scale-90 transition-all"
         >
           +
         </button>
