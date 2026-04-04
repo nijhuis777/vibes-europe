@@ -341,6 +341,28 @@ export default function TimerPage() {
               START
             </button>
           </div>
+
+          {/* Install as app instruction */}
+          <div className="w-full max-w-sm mt-10 bg-white/5 border border-white/10 rounded-2xl p-5">
+            <h3 className="font-bold text-sm text-white/80 mb-3">Zet op je telefoon als app</h3>
+            <div className="space-y-3 text-xs text-white/50 leading-relaxed">
+              <div className="flex gap-3">
+                <span className="shrink-0 w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-white/70 font-bold text-[10px]">1</span>
+                <p><strong className="text-white/70">iPhone:</strong> Tik op het deel-icoon (vierkantje met pijl omhoog) onderaan Safari</p>
+              </div>
+              <div className="flex gap-3">
+                <span className="shrink-0 w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-white/70 font-bold text-[10px]">2</span>
+                <p>Scroll naar beneden en tik op <strong className="text-white/70">&quot;Zet op beginscherm&quot;</strong></p>
+              </div>
+              <div className="flex gap-3">
+                <span className="shrink-0 w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-white/70 font-bold text-[10px]">3</span>
+                <p>Tik op <strong className="text-white/70">&quot;Voeg toe&quot;</strong> — klaar! De timer staat nu als app op je telefoon</p>
+              </div>
+              <div className="pt-2 border-t border-white/5">
+                <p><strong className="text-white/70">Android:</strong> Tik op de 3 puntjes rechtsboven in Chrome en kies <strong className="text-white/70">&quot;App installeren&quot;</strong> of <strong className="text-white/70">&quot;Toevoegen aan startscherm&quot;</strong></p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );
