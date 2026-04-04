@@ -17,6 +17,15 @@ const tools = [
     accent: "from-orange-500 to-red-500",
     status: "Live",
   },
+  {
+    slug: "crossfit",
+    title: "WOD Tracker",
+    description:
+      "White-label platform voor CrossFit boxen. WOD tracking, leaderboards, PR's en AI coaching.",
+    emoji: "🏋️",
+    accent: "from-cyan-500 to-blue-600",
+    status: "Plan",
+  },
 ];
 
 export default function LabPage() {
