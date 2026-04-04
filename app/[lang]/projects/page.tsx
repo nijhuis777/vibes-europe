@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import {
   IconSweatAndSoil,
   IconIntervisio,
@@ -23,19 +24,28 @@ export async function generateMetadata({
   };
 }
 
-const projectIcons = [IconSweatAndSoil, IconIntervisio, IconInitiative];
-const projectKeys = ["sweatAndSoil", "intervisio", "comingSoon"] as const;
+function RoamlerIcon({ size = 32 }: { size?: number }) {
+  return (
+    <Image src="/images/roamler-logo.svg" alt="Roamler" width={size} height={size} className="w-8 h-8 object-contain" />
+  );
+}
+
+const projectIcons = [RoamlerIcon, IconSweatAndSoil, IconIntervisio, IconInitiative];
+const projectKeys = ["roamler", "sweatAndSoil", "intervisio", "comingSoon"] as const;
 const projectLinks = [
+  "https://www.roamler.com",
   "https://sweatandsoil.com",
   "https://intervisio.nl",
   "/#contact",
 ];
 const statusColors = [
+  "bg-orange-100 text-orange-700",
   "bg-green-100 text-green-700",
   "bg-blue-100 text-blue-700",
   "bg-coral-100 text-coral-700",
 ];
 const accentBorders = [
+  "border-l-orange-500",
   "border-l-green-500",
   "border-l-blue-500",
   "border-l-coral-500",
