@@ -19,12 +19,12 @@ const tools = [
   },
   {
     slug: "crossfit",
-    title: "WOD Tracker",
+    title: "For CrossFit",
     description:
-      "White-label platform voor CrossFit boxen. WOD tracking, leaderboards, PR's en AI coaching.",
-    emoji: "🏋️",
+      "Er komt iets groots aan voor de CrossFit community. We bouwen achter de schermen aan iets waanzinnigs. Stay tuned.",
+    emoji: "🔥",
     accent: "from-cyan-500 to-blue-600",
-    status: "Plan",
+    status: "Coming soon",
   },
 ];
 
