@@ -1,21 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Inter, DM_Serif_Display } from "next/font/google";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { getDictionary, hasLocale, type Locale } from "./dictionaries";
-import "../globals.css";
-
-const inter = Inter({
-  variable: "--font-sans",
-  subsets: ["latin"],
-});
-
-const dmSerif = DM_Serif_Display({
-  variable: "--font-display",
-  weight: "400",
-  subsets: ["latin"],
-});
 
 export async function generateStaticParams() {
   return [{ lang: "en" }, { lang: "nl" }];
@@ -58,15 +45,10 @@ export default async function LangLayout({
   const dict = await getDictionary(lang);
 
   return (
-    <html
-      lang={lang}
-      className={`${inter.variable} ${dmSerif.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col font-sans">
-        <Navbar lang={lang as Locale} dict={dict} />
-        <main className="flex-1">{children}</main>
-        <Footer lang={lang as Locale} dict={dict} />
-      </body>
-    </html>
+    <>
+      <Navbar lang={lang as Locale} dict={dict} />
+      <main className="flex-1">{children}</main>
+      <Footer lang={lang as Locale} dict={dict} />
+    </>
   );
 }

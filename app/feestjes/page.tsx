@@ -22,7 +22,12 @@ const episodes: Episode[] = [
     location: "Amsterdam",
     vibe: "Electronic / Techno",
     description: "Episode 1. De eerste. DGTL Amsterdam — waar het allemaal begint.",
-    photos: [],
+    photos: [
+      "/images/feestjes/dgtl/dgtl-1.jpg",
+      "/images/feestjes/dgtl/dgtl-2.jpg",
+      "/images/feestjes/dgtl/dgtl-3.jpg",
+      "/images/feestjes/dgtl/dgtl-4.jpg",
+    ],
   },
 ];
 
